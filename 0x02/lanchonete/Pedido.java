@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 public class Pedido {
 
     private HashSet<ItemPedido> itensDentroCaixa = new HashSet<>();
-    private HashSet<ItemPedido>  itensForaCaixa = new HashSet<>();
+    private HashSet<ItemPedido> itensForaCaixa = new HashSet<>();
 
     public void adicionarItemDentroCaixa(ItemPedido item){
         itensDentroCaixa.add(item);
@@ -16,13 +16,15 @@ public class Pedido {
 
     @Override
     public String toString() {
-        System.out.println("\tFora da Caixa:");
+        final String[] result = {""};
+        result[0] += "\tFora da Caixa:\n";
         this.itensForaCaixa.stream()
-                .forEach(System.out::println);
+                .forEach( itemPedido -> result[0] += itemPedido + "\n");
 
-        System.out.println("\tDentro da Caixa:");
+
+        result[0] += "\tDentro da Caixa:\n";
         this.itensDentroCaixa.stream()
-                .forEach(System.out::println);
-        return "";
+                .forEach(itemPedido -> result[0] += itemPedido + "\n");
+        return result[0];
     }
 }
